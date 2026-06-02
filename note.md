@@ -40,8 +40,30 @@ php spark make:seeder VocabSeeder
 # do du lieu vao db
 php spark db:seed VocabSeeder
 
+# tao model
+php spark make:model VocabModel
+
+# tao controller
+php spark make:controller VocabController --restful
+
+# tao file cors
+php spark make:filter Cors
+
 ```
 
 ## Một số lưu ý
 
 - Không nên cho backend connect MySQL bằng tài khoản root, như vậy nếu MySQL chứa nhiều DB, khi gặp sự cố có thể sẽ mất hết các DB, chỉ cho log user bị giới hạn quyền, giới hạn truy cập DB thôi, sự cố xảy ra chỉ ảnh hưởng trong phạm vi nhỏ
+
+- Trong file controller restful sẽ có 7 hàm, chia làm 2 nhóm:
+
+    - Nhóm 1: Nhóm xử lý API (Trả về JSON):
+        - index() (GET): Lấy danh sách từ vựng.
+        - show() (GET): Lấy chi tiết 1 từ vựng.
+        - create() (POST): Lưu từ vựng mới vào DB.
+        - update() (PUT/PATCH): Cập nhật dữ liệu từ vựng.
+        - delete() (DELETE): Xóa từ vựng.
+    - Nhóm phục vụ hiển thị Giao diện (Trả về HTML View)
+        - Hàm new() (GET /api/vocab/new): Hàm này dùng để trả về một trang HTML chứa Form trống (có các ô input như Word, Definition...) để người dùng nhập liệu trên trình duyệt. Sau khi người dùng ấn nút "Submit" trên Form đó, dữ liệu mới được bắn vào hàm create().
+        - Hàm edit($id) (GET /api/vocab/{id}/edit): Hàm này dùng để trả về một trang HTML chứa Form có sẵn dữ liệu cũ của từ vựng đó để người dùng sửa. Khi họ ấn nút "Lưu thay đổi", dữ liệu mới được bắn vào hàm update().
+

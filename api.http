@@ -1,0 +1,30 @@
+# variable
+@baseUrl = http://localhost:8080
+
+# request  vocabulary
+GET {{baseUrl}}/api/vocab
+
+###
+GET {{baseUrl}}/api/vocab/1
+
+###
+POST {{baseUrl}}/api/vocab
+Accept: application/json
+
+{
+    "word": "Asynchronous",
+    "type": "adj",
+    "definition": "Bất đồng bộ (xử lý không theo tuần tự thời gian)",
+    "example": "JavaScript handles API requests in an asynchronous way."
+}
+
+###
+PUT {{baseUrl}}/api/vocab/1
+Accept: application/json
+
+{
+    "type": "N"
+}
+
+###
+DELETE {{baseUrl}}/api/vocab/1
