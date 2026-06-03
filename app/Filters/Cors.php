@@ -34,7 +34,8 @@ class Cors implements FilterInterface
         // Đề phòng trường hợp trình duyệt gửi request OPTIONS (Preflight request) để thăm dò
         $method = $_SERVER['REQUEST_METHOD'];
         if ($method == "OPTIONS") {
-            die();
+            header("HTTP/1.1 200 OK");
+            exit();
         }
     }
 

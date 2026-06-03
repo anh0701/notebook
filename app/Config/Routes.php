@@ -5,4 +5,9 @@ use CodeIgniter\Router\RouteCollection;
 /** @var RouteCollection $routes */
 $routes->get('/', 'Home::index');
 
-$routes->resource('api/vocab', ['controller' => 'VocabController']);
+$routes->group('api', function($routes) {
+    $routes->options('(:any)', 'Home::index');
+
+    $routes->resource('vocab', ['controller' => 'VocabController']);
+    
+});
