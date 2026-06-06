@@ -5,7 +5,10 @@
 GET {{baseUrl}}/api/vocab
 
 ###
-GET {{baseUrl}}/api/vocab/1
+GET {{baseUrl}}/api/vocab?search=Asynchronous
+
+###
+GET {{baseUrl}}/api/vocab/4
 
 ###
 POST {{baseUrl}}/api/vocab

@@ -16,8 +16,15 @@ class VocabController extends ResourceController
     public function index()
     {
         $model = new VocabModel();
+
+        $search = $this->request->getVar('search');
+
+        if (!empty($search)) {
+            $model->like('word', $search)
+                  ->orLike('definition', $search);
+        }
         
-        $data = $model->findAll();
+        $data = $model->orderBy('id', 'DESC')->findAll();
 
         return $this->respond($data, 200);
     }
